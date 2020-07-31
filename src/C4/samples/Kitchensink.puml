@@ -1,0 +1,37 @@
+@startuml
+!include ../C4_Component.puml
+
+title C4 Modelling Kitchensink
+
+Enterprise_Boundary(theiconic, Enterprise Boundary) {
+    Person(person, Person, "represents an actor" )
+    App(app, "Mobile App", "Tech", "represents a mobile app")
+    App_iOS(ios_app, "iOS App", "represents the iOS app")
+    App_Android(android_app, "Android App", "represents the Android app")
+
+    Website(web_app, "Web App", "Web", "represents a website/app")
+
+    Bot(bot, "Bot", "Tech", "represents a bot")
+
+    System_Boundary(system_boundary, "System Boundary") {
+        Container(container, "Container", "Tech", "represents an application container")
+        ContainerDb(database, "Database", "Tech", "represents a database container")
+    }
+
+    Queue(queue, "Queue", "Tech")
+
+    System(system, "System", "represents a system")
+    SystemDb(system_db, "Database System", "represents a database system")
+
+    Container_Boundary(container_boundary, Container Boundary) {
+        Component(comp, Component, Tech, "represents a component")
+    }
+}
+Person_Ext(external_person, External Person, "represents an external actor" )
+
+System_Ext(external_system, "External System", "represents an external system")
+
+Rel(person, app, "Uses", "Bob UI")
+Rel(app, container, "Uses", "Bob UI")
+Rel(database, container, "A 'Rel' relation", "Tech")
+@enduml

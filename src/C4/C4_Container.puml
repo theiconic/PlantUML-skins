@@ -1,0 +1,77 @@
+!include <c4/C4_Container.puml>
+
+!include <tupadr3/common.puml>
+
+!include <tupadr3/font-awesome-5/user.puml>
+!include <tupadr3/font-awesome-5/apple.puml>
+!include <tupadr3/font-awesome-5/android.puml>
+!include <tupadr3/font-awesome-5/mobile.puml>
+!include <tupadr3/font-awesome-5/chrome.puml>
+!include <tupadr3/font-awesome-5/robot.puml>
+
+!include <aws/common>
+!include <aws/Storage/AmazonS3/AmazonS3>
+!include <aws/Storage/AmazonS3/bucket/bucket>
+
+!define TI_CORNER_RADIUS 15
+!define STEREOTYPE_FONT_SIZE 11
+!define QUEUE_BG_COLOR #EEDD66
+!define QUEUE_FONT_COLOR #666622
+
+!define FOOTER_LEGEND center footer |<PERSON_BG_COLOR><color:#ffffff> person |<EXTERNAL_PERSON_BG_COLOR><color:#ffffff> external person |<SYSTEM_BG_COLOR><color:#ffffff> system |<EXTERNAL_SYSTEM_BG_COLOR><color:#ffffff> external system |<CONTAINER_BG_COLOR><color:#ffffff> container |<COMPONENT_BG_COLOR><color:#000000> component |<QUEUE_BG_COLOR><color:QUEUE_FONT_COLOR> queue |
+
+skinparam rectangle {
+    roundCorner TI_CORNER_RADIUS
+}
+
+skinparam queue {
+    Shadowing false
+    StereotypeFontSize 11
+    StereotypeFontColor #666622
+    FontColor QUEUE_FONT_COLOR
+    BackgroundColor QUEUE_BG_COLOR
+    BorderColor #DDCC00
+}
+
+skinparam rectangle<<app>> {
+    Shadowing false
+    StereotypeFontSize STEREOTYPE_FONT_SIZE
+    StereotypeFontColor #666622
+    FontColor ELEMENT_FONT_COLOR
+    BackgroundColor SYSTEM_BG_COLOR
+    BorderColor #3C7FC0
+}
+
+skinparam frame<<app>> {
+    roundCorner 15
+    Shadowing false
+    StereotypeFontSize STEREOTYPE_FONT_SIZE
+    StereotypeFontColor #666622
+    FontColor ELEMENT_FONT_COLOR
+    BackgroundColor SYSTEM_BG_COLOR
+    BorderColor #3C7FC0
+}
+
+skinparam rectangle<<bot>> {
+    Shadowing false
+    StereotypeFontSize STEREOTYPE_FONT_SIZE
+    StereotypeFontColor #666622
+    FontColor ELEMENT_FONT_COLOR
+    BackgroundColor CONTAINER_BG_COLOR
+    BorderColor #3C7FC0
+}
+
+!define Person(e_alias, e_label) rectangle "==e_label\n\n <$user>" <<person>> as e_alias
+!define Person(e_alias, e_label, e_descr) rectangle "==e_label\n\n <$user>\n e_descr" <<person>> as e_alias
+
+!define Queue(e_alias, e_label) queue "==e_label\n//<size:TECHN_FONT_SIZE>[CloudAMQP]</size>//" <<queue>> as e_alias
+!define Queue(e_alias, e_label, e_tech) queue "==e_label\n//<size:TECHN_FONT_SIZE>[e_tech]</size>//" <<queue>> as e_alias
+
+!define App(e_alias, e_label, e_tech, e_descr) rectangle "==e_label\n//<size:TECHN_FONT_SIZE>[e_tech]</size>//\n\ne_descr\n<$mobile{scale=0.5}>" <<app>> as e_alias
+!define App_iOS(e_alias, e_label, e_descr) rectangle "==e_label\n//<size:TECHN_FONT_SIZE>[iOS]</size>//\n\ne_descr\n<$apple{scale=0.75}>" <<app>> as e_alias
+!define App_Android(e_alias, e_label, e_descr) rectangle "==e_label\n//<size:TECHN_FONT_SIZE>[Android]</size>//\n\ne_descr\n<$android{scale=0.75}>" <<app>> as e_alias
+!define Website(e_alias, e_label, e_tech, e_descr) frame "==e_label\n//<size:TECHN_FONT_SIZE>[e_tech]</size>//\n\ne_descr\n<$chrome{scale=0.5}>" <<app>> as e_alias
+
+!define Bot(e_alias, e_label, e_tech, e_descr) rectangle "==e_label\n//<size:TECHN_FONT_SIZE>[e_tech]</size>//\n\ne_descr\n<$robot{scale=0.6}>" <<bot>> as e_alias
+
+FOOTER_LEGEND

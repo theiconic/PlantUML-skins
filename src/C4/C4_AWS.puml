@@ -1,0 +1,31 @@
+!include <awslib/AWSCommon>
+!include <awslib/General/Users>
+!include <awslib/Mobile/APIGateway>
+!include <awslib/Storage/S3Bucket>
+!include <awslib/Compute/Lambda>
+!include <awslib/Database/DynamoDBTable>
+!include <awslib/Database/RDSAmazonRDSInstance>
+!include <awslib/Database/ElastiCacheForRedis>
+
+skinparam rectangle<<aws>> {
+    Shadowing false
+    StereotypeFontSize 11
+    StereotypeFontColor #666622
+    FontColor ELEMENT_FONT_COLOR
+    BackgroundColor CONTAINER_BG_COLOR
+    BorderColor #3C7FC0
+}
+
+skinparam database<<aws>> {
+    Shadowing false
+    StereotypeFontSize 11
+    StereotypeFontColor #666622
+    FontColor ELEMENT_FONT_COLOR
+    BackgroundColor CONTAINER_BG_COLOR
+    BorderColor #3C7FC0
+}
+
+!define Container_AWS_S3(e_alias, e_label, e_descr) rectangle "<$S3Bucket{scale=0.66>\n==e_label\n//<size:TECHN_FONT_SIZE>[AWS S3]</size>//\n\ne_descr" <<aws>> as e_alias
+!define Container_AWS_DynamoDB(e_alias, e_label, e_descr) database "<$DynamoDBTable{scale=0.66}>\n==e_label\n//<size:TECHN_FONT_SIZE>[AWS DynamoDB]</size>//\n\ne_descr" <<aws>> as e_alias
+!define Container_AWS_RDS(e_alias, e_label, e_descr) database "<$RDSAmazonRDSinstance{scale=0.66}>\n==e_label\n//<size:TECHN_FONT_SIZE>[AWS RDS]</size>//\n\ne_descr" <<aws>> as e_alias
+!define Container_AWS_ElastiCache(e_alias, e_label, e_descr) database "<$ElastiCacheForRedis{scale=0.66}>\n==e_label\n//<size:TECHN_FONT_SIZE>[AWS ElastiCache]</size>//\n\ne_descr" <<aws>> as e_alias

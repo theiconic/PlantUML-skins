@@ -1,0 +1,33 @@
+@startuml
+!include ../C4_Component.puml
+'!includeurl https://raw.githubusercontent.com/TheIconic/PlantUML-skins/master/src/C4/C4_Container.puml
+
+
+title C4 Container-Level Model Starting Canvas
+
+Enterprise_Boundary(enterprise, The Company) {
+    Person(person, Person, "represents an actor")
+
+    App_iOS(app, "iOS App", "the iOS app")
+    Website(website, "Web App", "Web", "represents a website/app")
+
+    System_Boundary(backend, "Backend") {
+        Container(service, "Backend Service", "PHP", "represents an application container")
+        ContainerDb(database, "Database", "MySQL", "represents a database container")
+    }
+
+    System(api, "API", "the API")
+}
+Person_Ext(external_person, External Person, "represents an external actor" )
+
+System_Ext(external_system, "External System", "represents an external system")
+
+Rel(person, app, "Uses", "Phone")
+Rel(person, website, "Uses", "Browser")
+Rel(app, api, "...", "POST")
+Rel(website, service, "...", "JSON-RPC")
+Rel(api, service, "...", "JSON-RPC")
+Rel_Neighbor(database, service, "...", "Tech")
+Rel_Neighbor(service, external_system, "...", "REST-API")
+Rel(external_person, external_system, "uses")
+@enduml
