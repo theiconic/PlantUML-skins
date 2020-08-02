@@ -1,0 +1,53 @@
+@startmindmap
+<style>
+mindmapDiagram {
+  Shadowing 0
+  BackgroundColor #AACCEE
+  LineColor #666666
+  RoundCorner 15
+
+  .blue {
+    BackgroundColor #347cb2
+    FontColor white
+  }
+
+  .burgundy {
+    BackgroundColor #8d405e
+    FontColor white
+  }
+
+  .mint {
+    BackgroundColor #a7dace
+  }
+
+  .pink {
+    BackgroundColor #f492af
+  }
+
+  .green {
+    BackgroundColor #7dc838
+  }
+
+  .grey {
+    BackgroundColor #cccccc
+  }
+
+  .sand {
+    BackgroundColor #c59b15
+  }
+}
+</style>
+
++ root
+-- 1st level <<sand>>
+--- 2nd level <<grey>>
+-- 1st level <<green>>
+--- 2nd level <<pink>>
+--- 2nd level <<mint>>
+++ 1st level <<blue>>
++++_ 2nd level
++++_ 2nd level
+++ 1st level <<burgundy>>
++++_ <b>2nd level
++++_ <i>2nd level
+@endmindmap
