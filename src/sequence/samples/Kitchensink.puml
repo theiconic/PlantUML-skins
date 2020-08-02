@@ -1,0 +1,43 @@
+@startuml
+!include ../sequence.puml
+
+autonumber
+actor Actor
+box "Internal Service"
+    participant Application <<application>>
+    participant Service <<service>>
+end box
+boundary Boundary
+control Control
+entity Entity
+database Database
+collections Collections
+
+== initialization ==
+note left of Application
+a note with some text
+over multiple lines
+end note
+
+[-> Actor
+Actor -> Application
+... a delay with text ...
+loop 10 times
+Application -> Service: start doing things during duration
+activate Service
+Service ->> Boundary : hello
+Service -\\ Control : hello
+Service -\ Entity : hello
+Service -/ Database : hello
+ref over Service
+  what is a ref, exactly
+end ref
+Service -// Collections : hello
+Service -> Application : finish
+deactivate Service
+end
+...
+Actor <-- Application
+newpage with text
+[<-- Actor
+@enduml
