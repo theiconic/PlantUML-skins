@@ -1,0 +1,141 @@
+hide stereotype
+
+!define SEQUENCE_LINE_COLOR #347cb2
+!define SEQUENCE_FILL_COLOR #347cb2
+
+!define SEQUENCE_ARROW_COLOR #347cb2
+
+!define SEQUENCE_PARTICIPANT_FONT_STYLE Bold
+!define SEQUENCE_PARTICIPANT_FONT_SIZE 14
+
+skinparam {
+  Shadowing false
+  RoundCorner 4
+}
+
+skinparam actor {
+  FontColor SEQUENCE_LINE_COLOR
+  BackgroundColor #FFFFFF
+  BorderColor SEQUENCE_LINE_COLOR
+  FontStyle SEQUENCE_PARTICIPANT_FONT_STYLE
+  FontSize SEQUENCE_PARTICIPANT_FONT_SIZE
+}
+
+skinparam participant {
+  FontColor #FFFFFF
+  BackgroundColor SEQUENCE_FILL_COLOR
+  BorderColor #ffffff
+  FontStyle SEQUENCE_PARTICIPANT_FONT_STYLE
+  FontSize SEQUENCE_PARTICIPANT_FONT_SIZE
+  BorderThickness 1
+}
+
+skinparam boundary {
+  FontColor SEQUENCE_LINE_COLOR
+  BackgroundColor #FFFFFF
+  BorderColor SEQUENCE_LINE_COLOR
+  FontStyle SEQUENCE_PARTICIPANT_FONT_STYLE
+  FontSize SEQUENCE_PARTICIPANT_FONT_SIZE
+}
+
+skinparam control {
+  FontColor SEQUENCE_LINE_COLOR
+  BackgroundColor #FFFFFF
+  BorderColor SEQUENCE_FILL_COLOR
+  FontStyle SEQUENCE_PARTICIPANT_FONT_STYLE
+  FontSize SEQUENCE_PARTICIPANT_FONT_SIZE
+}
+
+skinparam entity {
+  FontColor SEQUENCE_LINE_COLOR
+  BackgroundColor #FFFFFF
+  BorderColor SEQUENCE_LINE_COLOR
+  FontStyle SEQUENCE_PARTICIPANT_FONT_STYLE
+  FontSize SEQUENCE_PARTICIPANT_FONT_SIZE
+}
+
+skinparam database {
+  FontColor SEQUENCE_LINE_COLOR
+  BackgroundColor SEQUENCE_FILL_COLOR
+  BorderColor #FFFFFF
+  FontStyle SEQUENCE_PARTICIPANT_FONT_STYLE
+  FontSize SEQUENCE_PARTICIPANT_FONT_SIZE
+}
+
+skinparam collections {
+  FontColor #FFFFFF
+  BackgroundColor SEQUENCE_FILL_COLOR
+  BorderColor #FFFFFF
+  FontStyle SEQUENCE_PARTICIPANT_FONT_STYLE
+  FontSize SEQUENCE_PARTICIPANT_FONT_SIZE
+}
+
+skinparam note {
+  FontColor #443311
+  BackgroundColor #f9f0d0
+  BorderColor #d0c090
+}
+
+skinparam box {
+  Padding 10
+}
+
+skinparam arrow {
+  Color SEQUENCE_ARROW_COLOR
+  FontColor SEQUENCE_ARROW_COLOR
+}
+
+skinparam sequence {
+  Box {
+    FontColor #a0a0a0
+    BackgroundColor #f0f0f0
+    BorderColor #c0c0c0
+  }
+
+  Delay {
+    FontColor SEQUENCE_LINE_COLOR
+  }
+
+  Divider {
+    FontColor #ffffff
+    BackgroundColor #c0c0c0
+    BorderColor #ffffff
+    BorderThickness 1
+  }
+
+  Group {
+    FontColor #444444
+    HeaderFontColor #444444
+    BodyBackgroundColor #FFFFFF
+    BackgroundColor #F0F0F0
+    BorderColor #c0c0c0
+    BorderThickness 1
+  }
+
+  LifeLine {
+    FontColor #000099
+    BackgroundColor SEQUENCE_LINE_COLOR
+    BorderColor SEQUENCE_LINE_COLOR
+  }
+
+  Reference {
+    FontColor #444444
+    HeaderFontColor #444444
+    BackgroundColor #FFFFFF
+    HeaderBackgroundColor #F0F0F0
+    BorderColor #c0c0c0
+    BorderThickness 1
+  }
+
+  Message {
+    Alignment left
+  }
+
+  Newpage {
+    SeparatorColor #666666
+  }
+
+  Arrow {
+    Thickness 2
+  }
+}
