@@ -1,0 +1,22 @@
+skinparam {
+  Shadowing false
+}
+
+skinparam activity {
+  StartColor #347cb2
+  BarColor #232323
+  EndColor #232323
+  BackgroundColor #f4edd7
+  BorderColor #86712d
+  FontStyle bold
+  FontColor #241f0f
+
+  diamond {
+    BackgroundColor #9cc4e2
+    BorderColor #347cb2
+  }
+}
+
+skinparam arrow {
+  Color #347cb2
+}

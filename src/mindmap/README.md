@@ -1,6 +1,6 @@
 # Mindmap Diagram skin
 
-This skin enhances the visuals for PlantUML sequence diagrams.
+This skin enhances the visuals for PlantUML mindmaps.
 
 ## Usage
 You will need to import the `mindmap.iuml` file.
@@ -8,7 +8,7 @@ You will need to import the `mindmap.iuml` file.
 @startmindmap
 !includeurl https://raw.githubusercontent.com/TheIconic/PlantUML-skins/master/src/mindmap/mindmap.iuml
 
-'...define your minmap diagram...
+'...define your mindmap diagram...
 
 @endmindmap
 ```
