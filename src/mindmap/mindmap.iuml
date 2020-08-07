@@ -1,11 +1,16 @@
 <style>
 mindmapDiagram {
     Shadowing: 0
+
+    arrow {
+        LineColor: #a0a0a0
+    }
+
     node {
         BackgroundColor: #347cb2
-        LineColor: #a0a0a0
         FontColor: #ffffff
         FontStyle: bold
+        LineColor: #a0a0a0
     }
 
     .black {
