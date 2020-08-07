@@ -1,0 +1,34 @@
+<style>
+mindmapDiagram {
+    Shadowing: 0
+    BackgroundColor: #347cb2
+    LineColor: #a0a0a0
+    FontColor: #ffffff
+    FontStyle: bold
+
+    .black {
+        BackgroundColor: #232323
+        FontColor: #ffffff
+    }
+
+    .grey {
+        BackgroundColor: #585858
+        FontColor: #ffffff
+    }
+
+    .important {
+        BackgroundColor: #8d405e
+        FontColor: #ffffff
+    }
+
+    .highlight {
+        BackgroundColor: #c59b15
+        FontColor: #ffffff
+    }
+
+    .success {
+        BackgroundColor: #7dc838
+        FontColor: #ffffff
+    }
+}
+</style>

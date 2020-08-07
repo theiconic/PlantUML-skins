@@ -6,6 +6,7 @@ architecture modelling.
 ## Contents
 - [C4 Modelling skin](src/C4)
 - [Sequence Diagrams skin](src/sequence)
+- [Mindmap skin](src/mindmap)
 
 ## IDE Plugins
 IDE plugins are available providing syntax highlighting/autocomple as well

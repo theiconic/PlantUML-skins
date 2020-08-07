@@ -1,0 +1,16 @@
+@startmindmap
+!include ../mindmap.iuml
+
+* root
+-- 2nd level
+--- 3rd level <<grey>>
+--- 3rd level <<black>>
+-- 2nd level <<success>>
+++ 2nd level <<highlight>>
+++_ 3rd level
+--_ 2nd level
+++ 2nd level
++++ 3rd level <<important>>
++++ 3rd level <<test>>
+
+@endmindmap
