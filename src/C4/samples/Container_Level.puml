@@ -1,5 +1,5 @@
 @startuml
-!includeurl https://raw.githubusercontent.com/TheIconic/PlantUML-skins/master/src/C4/C4_Container.puml
+!includeurl https://raw.githubusercontent.com/TheIconic/PlantUML-skins/master/src/C4/C4_Container.iuml
 
 title C4 Container-Level Model Starting Canvas
 

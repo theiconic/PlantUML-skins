@@ -18,7 +18,9 @@
 !define QUEUE_BG_COLOR #EEDD66
 !define QUEUE_FONT_COLOR #666622
 
-!define FOOTER_LEGEND center footer |<PERSON_BG_COLOR><color:#ffffff> person |<EXTERNAL_PERSON_BG_COLOR><color:#ffffff> external person |<SYSTEM_BG_COLOR><color:#ffffff> system |<EXTERNAL_SYSTEM_BG_COLOR><color:#ffffff> external system |<CONTAINER_BG_COLOR><color:#ffffff> container |<COMPONENT_BG_COLOR><color:#000000> component |<QUEUE_BG_COLOR><color:QUEUE_FONT_COLOR> queue |
+!procedure $footer()
+center footer |<PERSON_BG_COLOR><color:#ffffff> person |<EXTERNAL_PERSON_BG_COLOR><color:#ffffff> external person |<SYSTEM_BG_COLOR><color:#ffffff> system |<EXTERNAL_SYSTEM_BG_COLOR><color:#ffffff> external system |<CONTAINER_BG_COLOR><color:#ffffff> container |<QUEUE_BG_COLOR><color:QUEUE_FONT_COLOR> queue |
+!endprocedure
 
 skinparam rectangle {
     roundCorner TI_CORNER_RADIUS
@@ -74,4 +76,4 @@ skinparam rectangle<<bot>> {
 
 !define Bot(e_alias, e_label, e_tech, e_descr) rectangle "==e_label\n//<size:TECHN_FONT_SIZE>[e_tech]</size>//\n\ne_descr\n<$robot{scale=0.6}>" <<bot>> as e_alias
 
-FOOTER_LEGEND
+$footer()
