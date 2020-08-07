@@ -6,12 +6,12 @@ version and applying our own styling enhancements and additonal
 syntax on top.
 
 ## Usage
-You will need to import either the `C4_Container.puml` (for Context- or Container-level models)
-or the `C4_Component.puml` (for Component-level models) file. In most cases you
+You will need to import either the `C4_Container.iuml` (for Context- or Container-level models)
+or the `C4_Component.iuml` (for Component-level models) file. In most cases you
 will want to create a Container-level model.
 ```
 @startuml
-!includeurl https://raw.githubusercontent.com/TheIconic/PlantUML-skins/master/src/C4/C4_Container.puml
+!includeurl https://raw.githubusercontent.com/TheIconic/PlantUML-skins/master/src/C4/C4_Container.iuml
 
 '...define your model...
 
@@ -30,6 +30,6 @@ for syntax documentation and more examples.
 This, of course, doesn't include the syntax extension provided by this skin.
 
 ## AWS Containers
-The [AWS container definitions](C4_AWS.puml) in currently deemed experimental
+The [AWS container definitions](C4_AWS.iuml) in currently deemed experimental
 and may be removed in the future. Please **do not use them**, yet - or your models
 may break in the future.

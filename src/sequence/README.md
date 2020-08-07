@@ -6,7 +6,7 @@ This skin enhances the visuals for PlantUML sequence diagrams.
 You will need to import the `sequence.puml` file.
 ```
 @startuml
-!includeurl https://raw.githubusercontent.com/TheIconic/PlantUML-skins/master/src/sequence/sequence.puml
+!includeurl https://raw.githubusercontent.com/TheIconic/PlantUML-skins/master/src/sequence/sequence.iuml
 
 '...define your sequence diagram...
 

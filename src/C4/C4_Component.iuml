@@ -1,0 +1,8 @@
+!include <c4/C4_Component.puml>
+!include C4_Container.iuml
+
+!procedure $footer()
+center footer |<PERSON_BG_COLOR><color:#ffffff> person |<EXTERNAL_PERSON_BG_COLOR><color:#ffffff> external person |<SYSTEM_BG_COLOR><color:#ffffff> system |<EXTERNAL_SYSTEM_BG_COLOR><color:#ffffff> external system |<CONTAINER_BG_COLOR><color:#ffffff> container |<COMPONENT_BG_COLOR><color:#000000> component |<QUEUE_BG_COLOR><color:QUEUE_FONT_COLOR> queue |
+!endprocedure
+
+$footer()

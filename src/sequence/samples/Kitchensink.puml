@@ -1,5 +1,5 @@
 @startuml
-!include ../sequence.puml
+!include ../sequence.iuml
 
 autonumber
 actor Actor

@@ -1,5 +1,5 @@
 @startuml
-!include ../C4_Component.puml
+!include ../C4_Component.iuml
 
 title C4 Modelling Kitchensink
 
