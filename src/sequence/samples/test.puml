@@ -1,0 +1,11 @@
+@startgantt
+project starts the 2020/08/06
+saturday are closed
+sunday are closed
+2020/08/20 is colored in red
+2020/08/14 is colored in yellow
+[Development] starts on 2020/08/01
+[Development] ends on 2020/08/14
+then [Data Migration] lasts 2 days
+then [Validation] lasts 1 day
+@endgantt

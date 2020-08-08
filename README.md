@@ -4,10 +4,11 @@ This repository contains PlantUML skins for TheIconic for text-based
 architecture modelling.
 
 ## Contents
-- [C4 modelling skin](src/C4)
-- [Sequence diagram skin](src/sequence)
-- [Mindmap skin](src/mindmap)
 - [Activity diagram skin](src/activity)
+- [C4 modelling skin](src/C4)
+- [Gantt chart skin](src/gantt)
+- [Mindmap skin](src/mindmap)
+- [Sequence diagram skin](src/sequence)
 
 ## IDE Plugins
 IDE plugins are available providing syntax highlighting/autocomple as well
