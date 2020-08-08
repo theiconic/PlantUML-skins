@@ -34,4 +34,6 @@ System_Ext(external_system, "External System", "represents an external system")
 Rel(person, app, "Uses", "Bob UI")
 Rel(app, container, "Uses", "Bob UI")
 Rel(database, container, "A 'Rel' relation", "Tech")
+
+$legend()
 @enduml
