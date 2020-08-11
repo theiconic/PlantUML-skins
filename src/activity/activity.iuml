@@ -1,6 +1,4 @@
-skinparam {
-  Shadowing false
-}
+!include https://raw.githubusercontent.com/TheIconic/PlantUML-skins/master/src/common.iuml
 
 skinparam activity {
   StartColor #347cb2

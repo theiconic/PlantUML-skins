@@ -1,4 +1,4 @@
-hide stereotype
+!include https://raw.githubusercontent.com/TheIconic/PlantUML-skins/master/src/common.iuml
 
 !define SEQUENCE_LINE_COLOR #347cb2
 !define SEQUENCE_FILL_COLOR #347cb2
@@ -8,10 +8,7 @@ hide stereotype
 !define SEQUENCE_PARTICIPANT_FONT_STYLE Bold
 !define SEQUENCE_PARTICIPANT_FONT_SIZE 14
 
-skinparam {
-  Shadowing false
-  RoundCorner 4
-}
+skinparam RoundCorner 4
 
 skinparam actor {
   FontColor SEQUENCE_LINE_COLOR
@@ -68,12 +65,6 @@ skinparam collections {
   BorderColor #FFFFFF
   FontStyle SEQUENCE_PARTICIPANT_FONT_STYLE
   FontSize SEQUENCE_PARTICIPANT_FONT_SIZE
-}
-
-skinparam note {
-  FontColor #443311
-  BackgroundColor #f9f0d0
-  BorderColor #d0c090
 }
 
 skinparam box {
