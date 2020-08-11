@@ -5,7 +5,13 @@ title Activity Kitchensink
 
 :Ready;
 :next(o)|
+floating note right
+  Floating note
+endnote
 :Receiving;
+note right
+  Attached note
+endnote
 split
  :nak(i)<
  :ack(o)>

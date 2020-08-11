@@ -29,5 +29,5 @@ Rel_Neighbor(database, service, "...", "Tech")
 Rel_Neighbor(service, external_system, "...", "REST-API")
 Rel(external_person, external_system, "uses")
 
-$legend()
+LEGEND
 @enduml

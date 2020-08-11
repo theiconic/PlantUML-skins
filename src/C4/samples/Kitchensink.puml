@@ -35,5 +35,5 @@ Rel(person, app, "Uses", "Bob UI")
 Rel(app, container, "Uses", "Bob UI")
 Rel(database, container, "A 'Rel' relation", "Tech")
 
-$legend()
+LEGEND
 @enduml
