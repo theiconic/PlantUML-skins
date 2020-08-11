@@ -5,11 +5,14 @@ title C4 Modelling Kitchensink
 
 Enterprise_Boundary(theiconic, Enterprise Boundary) {
     Person(person, Person, "represents an actor" )
-    App(app, "Mobile App", "Tech", "represents a mobile app")
-    App_iOS(ios_app, "iOS App", "represents the iOS app")
-    App_Android(android_app, "Android App", "represents the Android app")
 
-    Website(web_app, "Web App", "Web", "represents a website/app")
+    App(app, "Mobile App", "Tech", "represents a mobile app")
+
+    Group(group with label) {
+        App_iOS(ios_app, "iOS App", "represents the iOS app")
+        App_Android(android_app, "Android App", "represents the Android app")
+        Website(web_app, "Web App", "Web", "represents a website/app")
+    }
 
     Bot(bot, "Bot", "Tech", "represents a bot")
 
@@ -34,6 +37,10 @@ System_Ext(external_system, "External System", "represents an external system")
 Rel(person, app, "Uses", "Bob UI")
 Rel(app, container, "Uses", "Bob UI")
 Rel(database, container, "A 'Rel' relation", "Tech")
+Rel_Right(system_db, bot, Rel_Right)
+Rel_Down(web_app, system, Rel_Down)
+Rel_Up(system, ios_app, Rel_Up)
+Rel_Both(android_app, system, Rel_Both)
 
 LEGEND
 @enduml
