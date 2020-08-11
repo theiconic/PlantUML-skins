@@ -1,0 +1,9 @@
+hide stereotype
+
+skinparam note {
+  FontColor #443311
+  BackgroundColor #f9f0d0
+  BorderColor #d0c090
+}
+
+skinparam Shadowing false

@@ -1,3 +1,4 @@
+!include https://raw.githubusercontent.com/TheIconic/PlantUML-skins/master/src/common.iuml
 !include <c4/C4_Container.puml>
 
 !include <tupadr3/common.puml>
