@@ -67,8 +67,12 @@ skinparam rectangle<<group>> {
     BorderThickness 0
 }
 
+
 !define Person(e_alias, e_label) rectangle "==e_label\n\n <$user>" <<person>> as e_alias
 !define Person(e_alias, e_label, e_descr) rectangle "==e_label\n\n <$user>\n e_descr" <<person>> as e_alias
+
+!define Person_Ext(e_alias, e_label) rectangle "==e_label\n\n <$user>" <<external_person>> as e_alias
+!define Person_Ext(e_alias, e_label, e_descr) rectangle "==e_label\n\n <$user>\n e_descr" <<external_person>> as e_alias
 
 !define Queue(e_alias, e_label) queue "==e_label\n//<size:TECHN_FONT_SIZE>[CloudAMQP]</size>//" <<queue>> as e_alias
 !define Queue(e_alias, e_label, e_tech) queue "==e_label\n//<size:TECHN_FONT_SIZE>[e_tech]</size>//" <<queue>> as e_alias
@@ -81,7 +85,10 @@ skinparam rectangle<<group>> {
 !define Bot(e_alias, e_label, e_tech, e_descr) rectangle "==e_label\n//<size:TECHN_FONT_SIZE>[e_tech]</size>//\n\ne_descr\n<$robot{scale=0.6}>" <<bot>> as e_alias
 
 !define Rel_Both(e_from, e_to, e_label) Rel_(e_from, e_to, e_label, "<-->")
+!define Rel_Both(e_from, e_to, e_label, e_techn) Rel_(e_from,e_to, e_label, e_techn, "<-->")
 !define Rel_Both_Neighbor(e_from, e_to, e_label) Rel_(e_from, e_to, e_label, "<->")
+!define Rel_Both_Neighbor(e_from, e_to, e_label, e_techn) Rel_(e_from, e_to, e_label, e_techn, "<->")
 
 !define Group() rectangle " " <<group>>
 !define Group(e_label) rectangle "e_label" <<group>>
+!define Group(e_alias, e_label) rectangle "e_label" <<group>> as e_alias
