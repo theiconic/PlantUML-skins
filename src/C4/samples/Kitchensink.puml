@@ -1,10 +1,10 @@
 @startuml
-!include ../C4_Component.iuml
+!include https://raw.githubusercontent.com/TheIconic/PlantUML-skins/master/src/C4/C4_Component.iuml
 
 title C4 Modelling Kitchensink
 
 Enterprise_Boundary(theiconic, Enterprise Boundary) {
-    Person(person, Person, "represents an actor" )
+    Person(person, Person, "represents an actor")
 
     App(app, "Mobile App", "Tech", "represents a mobile app")
 
@@ -19,28 +19,35 @@ Enterprise_Boundary(theiconic, Enterprise Boundary) {
     System_Boundary(system_boundary, "System Boundary") {
         Container(container, "Container", "Tech", "represents an application container")
         ContainerDb(database, "Database", "Tech", "represents a database container")
+
+        Container_Boundary(container_boundary, Container Boundary, "") {
+            Component(comp, Component, Tech, "represents a component")
+        }
     }
 
-    Queue(queue, "Queue", "Tech")
+    Queue(queue, "Queue", "represents a queue", "Tech")
 
     System(system, "System", "represents a system")
-    SystemDb(system_db, "Database System", "represents a database system")
-
-    Container_Boundary(container_boundary, Container Boundary) {
-        Component(comp, Component, Tech, "represents a component")
-    }
+    SystemDb(system_db, "Database System", "Tech", "represents a database system")
 }
+
 Person_Ext(external_person, External Person, "represents an external actor" )
 
 System_Ext(external_system, "External System", "represents an external system")
 
-Rel(person, app, "Uses", "Bob UI")
-Rel(app, container, "Uses", "Bob UI")
-Rel(database, container, "A 'Rel' relation", "Tech")
-Rel_Right(system_db, bot, Rel_Right)
-Rel_Down(web_app, system, Rel_Down)
-Rel_Up(system, ios_app, Rel_Up)
-Rel_Both(android_app, system, Rel_Both)
+Rel(person, app, "Rel")
+Rel(app, container, "Rel", "Tech")
+Rel_Back(container, database, "Rel_Back", "Tech")
+Rel_Neighbor(container, queue, Rel_Neighbor)
+BiRel_Neighbor(bot, system_db, BiRel_Neighbor)
+Rel_Down(web_app, container, Rel_Down)
+Rel_Up(container, ios_app, Rel_Up)
+Rel_Both(android_app, container, Rel_Both)
+Rel_Back(comp, queue, Rel_Back)
+Rel_Right(queue, system, Rel_Right)
+Rel_Neighbor(system, external_system, Rel_Neighbor)
+Rel(external_person, web_app, Rel)
+Rel_Up(bot, web_app, Rel_Up)
 
-LEGEND
+SHOW_DYNAMIC_LEGEND()
 @enduml
