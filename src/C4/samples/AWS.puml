@@ -9,5 +9,5 @@ Container_AWS_DynamoDB(dynamo, "Aws DynamoDB", "...")
 Container_AWS_RDS(rds, "Aws RDS", "...")
 Container_AWS_ElastiCache(elasticache, "Aws ElastiCache", "...")
 
-LEGEND
+SHOW_DYNAMIC_LEGEND()
 @enduml

@@ -11,21 +11,63 @@ skinparam rectangle<<aws>> {
     Shadowing false
     StereotypeFontSize 11
     StereotypeFontColor #666622
-    FontColor ELEMENT_FONT_COLOR
-    BackgroundColor CONTAINER_BG_COLOR
-    BorderColor #3C7FC0
+    FontColor $ELEMENT_FONT_COLOR
+    BackgroundColor $CONTAINER_BG_COLOR
+    BorderColor $CONTAINER_BORDER_COLOR
 }
 
-skinparam database<<aws>> {
+skinparam database<<aws_s3>> {
     Shadowing false
     StereotypeFontSize 11
     StereotypeFontColor #666622
-    FontColor ELEMENT_FONT_COLOR
-    BackgroundColor CONTAINER_BG_COLOR
-    BorderColor #3C7FC0
+    FontColor $ELEMENT_FONT_COLOR
+    BackgroundColor $CONTAINER_BG_COLOR
+    BorderColor $CONTAINER_BORDER_COLOR
 }
 
-!define Container_AWS_S3(e_alias, e_label, e_descr) rectangle "<$S3Bucket{scale=0.66>\n==e_label\n//<size:TECHN_FONT_SIZE>[AWS S3]</size>//\n\ne_descr" <<aws>> as e_alias
-!define Container_AWS_DynamoDB(e_alias, e_label, e_descr) database "<$DynamoDBTable{scale=0.66}>\n==e_label\n//<size:TECHN_FONT_SIZE>[AWS DynamoDB]</size>//\n\ne_descr" <<aws>> as e_alias
-!define Container_AWS_RDS(e_alias, e_label, e_descr) database "<$RDSAmazonRDSinstance{scale=0.66}>\n==e_label\n//<size:TECHN_FONT_SIZE>[AWS RDS]</size>//\n\ne_descr" <<aws>> as e_alias
-!define Container_AWS_ElastiCache(e_alias, e_label, e_descr) database "<$ElastiCacheForRedis{scale=0.66}>\n==e_label\n//<size:TECHN_FONT_SIZE>[AWS ElastiCache]</size>//\n\ne_descr" <<aws>> as e_alias
+skinparam database<<aws_dynamo>> {
+    Shadowing false
+    StereotypeFontSize 11
+    StereotypeFontColor #666622
+    FontColor $ELEMENT_FONT_COLOR
+    BackgroundColor $CONTAINER_BG_COLOR
+    BorderColor $CONTAINER_BORDER_COLOR
+}
+
+skinparam database<<aws_rds>> {
+    Shadowing false
+    StereotypeFontSize 11
+    StereotypeFontColor #666622
+    FontColor $ELEMENT_FONT_COLOR
+    BackgroundColor $CONTAINER_BG_COLOR
+    BorderColor $CONTAINER_BORDER_COLOR
+}
+
+skinparam database<<aws_elasticcache>> {
+    Shadowing false
+    StereotypeFontSize 11
+    StereotypeFontColor #666622
+    FontColor $ELEMENT_FONT_COLOR
+    BackgroundColor $CONTAINER_BG_COLOR
+    BorderColor $CONTAINER_BORDER_COLOR
+}
+
+!unquoted procedure Container_AWS_S3($alias, $label, $descr, $tags="")
+database "<$S3Bucket{scale=0.66>\n==$label\n//<size:TECHN_FONT_SIZE>[AWS S3]</size>//\n\n$descr" $toStereos('aws_s3', $tags) as $alias
+$addTagToDynamicLegend(aws_s3, $CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $CONTAINER_BORDER_COLOR)
+!endprocedure
+
+!unquoted procedure Container_AWS_DynamoDB($alias, $label, $descr, $tags="")
+database "<$DynamoDBTable{scale=0.66}>\n==$label\n//<size:TECHN_FONT_SIZE>[AWS DynamoDb]</size>//\n\n$descr" $toStereos('aws_dynamo', $tags) as $alias
+$addTagToDynamicLegend(aws_dynamo, $CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $CONTAINER_BORDER_COLOR)
+!endprocedure
+
+!unquoted procedure Container_AWS_RDS($alias, $label, $descr, $tags="")
+database "<$RDSAmazonRDSinstance{scale=0.66}>\n==$label\n//<size:TECHN_FONT_SIZE>[AWS RDS]</size>//\n\n$descr" $toStereos('aws_rds', $tags) as $alias
+$addTagToDynamicLegend(aws_rds, $CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $CONTAINER_BORDER_COLOR)
+!endprocedure
+
+!unquoted procedure Container_AWS_ElastiCache($alias, $label, $descr, $tags="")
+database "<$ElastiCacheForRedis{scale=0.66}>\n==$label\n//<size:TECHN_FONT_SIZE>[AWS ElasticCache]</size>//\n\n$descr" $toStereos('aws_elasticcache', $tags) as $alias
+$addTagToDynamicLegend(aws_elasticcache, $CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $CONTAINER_BORDER_COLOR)
+!endprocedure

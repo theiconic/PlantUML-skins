@@ -16,6 +16,7 @@ Enterprise_Boundary(enterprise, The Company) {
 
     System(api, "API", "the API")
 }
+
 Person_Ext(external_person, External Person, "represents an external actor" )
 
 System_Ext(external_system, "External System", "represents an external system")
@@ -29,5 +30,5 @@ Rel_Neighbor(database, service, "...", "Tech")
 Rel_Neighbor(service, external_system, "...", "REST-API")
 Rel(external_person, external_system, "uses")
 
-LEGEND
+SHOW_DYNAMIC_LEGEND()
 @enduml

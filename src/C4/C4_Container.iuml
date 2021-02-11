@@ -14,52 +14,79 @@
 !include <aws/Storage/AmazonS3/AmazonS3>
 !include <aws/Storage/AmazonS3/bucket/bucket>
 
-!define TI_CORNER_RADIUS 15
-!define STEREOTYPE_FONT_SIZE 11
-!define QUEUE_BG_COLOR #EEDD66
-!define QUEUE_FONT_COLOR #666622
+!global $TI_CORNER_RADIUS = 15
+!global $STEREOTYPE_FONT_SIZE = 11
+!global $QUEUE_BG_COLOR = "#EEDD66"
+!global $QUEUE_FONT_COLOR = "#666622"
+!global $QUEUE_BORDER_COLOR = "#DDCC00"
 
-!define LEGEND center footer |<PERSON_BG_COLOR><color:#ffffff> person |<EXTERNAL_PERSON_BG_COLOR><color:#ffffff> external person |<SYSTEM_BG_COLOR><color:#ffffff> system |<EXTERNAL_SYSTEM_BG_COLOR><color:#ffffff> external system |<CONTAINER_BG_COLOR><color:#ffffff> container |<QUEUE_BG_COLOR><color:QUEUE_FONT_COLOR> queue |
+!unquoted procedure SHOW_DYNAMIC_LEGEND($hideStereotype="true")
+!if ($hideStereotype=="true")
+hide stereotype
+!endif
+!$lgd = $showActiveLegendEntries($tagDefaultLegend) + $showActiveLegendEntries($tagCustomLegend)
+center footer $lgd
+!endprocedure
+
+!function $showActiveLegendEntries($allDefined)
+  !$legend = ""
+  !$brPos = %strpos($allDefined, "\n")
+  !while ($brPos >= 0)
+    !$tagStereo = %substr($allDefined, 0, $brPos)
+    !$allDefined = %substr($allDefined, $brPos+2)
+    !$brPos = %strpos($allDefined, "\n")
+    !if (%variable_exists("$" + $tagStereo + "Legend"))
+      !$legend = $legend + %get_variable_value("$" + $tagStereo + "LegendEntry")
+    !endif
+  !endwhile
+  !if (%strlen($allDefined)>0)
+    !$tagStereo = $allDefined
+    !if (%variable_exists("$" + $tagStereo + "Legend"))
+      !$legend = $legend + %get_variable_value("$" + $tagStereo + "LegendEntry")
+    !endif
+  !endif
+  !return $legend
+!endfunction
 
 skinparam rectangle {
-    roundCorner TI_CORNER_RADIUS
+    roundCorner $TI_CORNER_RADIUS
 }
 
 skinparam queue {
     Shadowing false
     StereotypeFontSize 11
     StereotypeFontColor #666622
-    FontColor QUEUE_FONT_COLOR
-    BackgroundColor QUEUE_BG_COLOR
-    BorderColor #DDCC00
+    FontColor $QUEUE_FONT_COLOR
+    BackgroundColor $QUEUE_BG_COLOR
+    BorderColor $QUEUE_BORDER_COLOR
 }
 
 skinparam rectangle<<app>> {
     Shadowing false
-    StereotypeFontSize STEREOTYPE_FONT_SIZE
+    StereotypeFontSize $STEREOTYPE_FONT_SIZE
     StereotypeFontColor #666622
-    FontColor ELEMENT_FONT_COLOR
-    BackgroundColor SYSTEM_BG_COLOR
+    FontColor $ELEMENT_FONT_COLOR
+    BackgroundColor $SYSTEM_BG_COLOR
     BorderColor #3C7FC0
 }
 
 skinparam frame<<app>> {
     roundCorner 15
     Shadowing false
-    StereotypeFontSize STEREOTYPE_FONT_SIZE
+    StereotypeFontSize $STEREOTYPE_FONT_SIZE
     StereotypeFontColor #666622
-    FontColor ELEMENT_FONT_COLOR
-    BackgroundColor SYSTEM_BG_COLOR
+    FontColor $ELEMENT_FONT_COLOR
+    BackgroundColor $SYSTEM_BG_COLOR
     BorderColor #3C7FC0
 }
 
 skinparam rectangle<<bot>> {
     Shadowing false
-    StereotypeFontSize STEREOTYPE_FONT_SIZE
+    StereotypeFontSize $STEREOTYPE_FONT_SIZE
     StereotypeFontColor #666622
-    FontColor ELEMENT_FONT_COLOR
-    BackgroundColor CONTAINER_BG_COLOR
-    BorderColor #3C7FC0
+    FontColor $ELEMENT_FONT_COLOR
+    BackgroundColor $CONTAINER_BG_COLOR
+    BorderColor $CONTAINER_BORDER_COLOR
 }
 
 skinparam rectangle<<group>> {
@@ -67,28 +94,79 @@ skinparam rectangle<<group>> {
     BorderThickness 0
 }
 
+!function $getQueue($label, $techn, $descr, $sprite)
+    !$ftech = ""
+    !if ($techn != "")
+        !$ftech = '\n//<size:' + $TECHN_FONT_SIZE + '>[' + $techn + ']</size>//'
+    !endif
+    !if ($descr == "") && ($sprite == "")
+        !return '==' + $label + '\n' + $ftech
+    !endif
+    !if ($descr == "") && ($sprite != "")
+        !return '<$' + $sprite + '>\n=='+$label+'' + $ftech + ''
+    !endif
+    !if ($descr != "") && ($sprite == "")
+        !return '==' + $label + '' + $ftech + '\n\n '+$descr
+    !endif
+    !if ($descr != "") && ($sprite != "")
+        !return '<$' + $sprite + '>\n==' + $label + $ftech + '\n\n '+$descr
+    !endif
+!endfunction
 
-!define Person(e_alias, e_label) rectangle "==e_label\n\n <$user>" <<person>> as e_alias
-!define Person(e_alias, e_label, e_descr) rectangle "==e_label\n\n <$user>\n e_descr" <<person>> as e_alias
+!unquoted procedure Queue($alias, $label, $descr="", $tech="", $sprite="", $tags="")
+queue "$getQueue($label, $tech, $descr, $sprite)$getProps()" $toStereos("queue", $tags) as $alias
+$addTagToDynamicLegend(queue, $QUEUE_BG_COLOR, $QUEUE_FONT_COLOR, $QUEUE_BORDER_COLOR)
+!endprocedure
 
-!define Person_Ext(e_alias, e_label) rectangle "==e_label\n\n <$user>" <<external_person>> as e_alias
-!define Person_Ext(e_alias, e_label, e_descr) rectangle "==e_label\n\n <$user>\n e_descr" <<external_person>> as e_alias
+!unquoted procedure App($alias, $label, $tech, $descr, $tags="")
+rectangle "==$label\n//<size:$TECHN_FONT_SIZE>[$tech]</size>//\n\n$descr\n<$mobile{scale=0.75}>" $toStereos('app', $tags) as $alias
+$addTagToDynamicLegend(app, $SYSTEM_BG_COLOR, $ELEMENT_FONT_COLOR, $SYSTEM_BORDER_COLOR)
+!endprocedure
 
-!define Queue(e_alias, e_label) queue "==e_label\n//<size:TECHN_FONT_SIZE>[CloudAMQP]</size>//" <<queue>> as e_alias
-!define Queue(e_alias, e_label, e_tech) queue "==e_label\n//<size:TECHN_FONT_SIZE>[e_tech]</size>//" <<queue>> as e_alias
+!unquoted procedure App_iOS($alias, $label, $descr, $tags="")
+rectangle "==$label\n//<size:$TECHN_FONT_SIZE>[iOS]</size>//\n\n$descr\n<$apple{scale=0.75}>" $toStereos('app', $tags) as $alias
+$addTagToDynamicLegend(app_ios, $SYSTEM_BG_COLOR, $ELEMENT_FONT_COLOR, $SYSTEM_BORDER_COLOR)
+!endprocedure
 
-!define App(e_alias, e_label, e_tech, e_descr) rectangle "==e_label\n//<size:TECHN_FONT_SIZE>[e_tech]</size>//\n\ne_descr\n<$mobile{scale=0.5}>" <<app>> as e_alias
-!define App_iOS(e_alias, e_label, e_descr) rectangle "==e_label\n//<size:TECHN_FONT_SIZE>[iOS]</size>//\n\ne_descr\n<$apple{scale=0.75}>" <<app>> as e_alias
-!define App_Android(e_alias, e_label, e_descr) rectangle "==e_label\n//<size:TECHN_FONT_SIZE>[Android]</size>//\n\ne_descr\n<$android{scale=0.75}>" <<app>> as e_alias
-!define Website(e_alias, e_label, e_tech, e_descr) frame "==e_label\n//<size:TECHN_FONT_SIZE>[e_tech]</size>//\n\ne_descr\n<$chrome{scale=0.5}>" <<app>> as e_alias
+!unquoted procedure App_Android($alias, $label, $descr, $tags="")
+rectangle "==$label\n//<size:$TECHN_FONT_SIZE>[Android]</size>//\n\n$descr\n<$android{scale=0.75}>" $toStereos('app', $tags) as $alias
+$addTagToDynamicLegend(app_android, $SYSTEM_BG_COLOR, $ELEMENT_FONT_COLOR, $SYSTEM_BORDER_COLOR)
+!endprocedure
 
-!define Bot(e_alias, e_label, e_tech, e_descr) rectangle "==e_label\n//<size:TECHN_FONT_SIZE>[e_tech]</size>//\n\ne_descr\n<$robot{scale=0.6}>" <<bot>> as e_alias
+!unquoted procedure Website($alias, $label, $tech, $descr, $tags="")
+frame "==$label\n//<size:$TECHN_FONT_SIZE>[$tech]</size>//\n\n$descr\n<$chrome{scale=0.525}>" $toStereos('app', $tags) as $alias
+$addTagToDynamicLegend(website, $SYSTEM_BG_COLOR, $ELEMENT_FONT_COLOR, "")
+!endprocedure
 
-!define Rel_Both(e_from, e_to, e_label) Rel_(e_from, e_to, e_label, "<-->")
-!define Rel_Both(e_from, e_to, e_label, e_techn) Rel_(e_from,e_to, e_label, e_techn, "<-->")
-!define Rel_Both_Neighbor(e_from, e_to, e_label) Rel_(e_from, e_to, e_label, "<->")
-!define Rel_Both_Neighbor(e_from, e_to, e_label, e_techn) Rel_(e_from, e_to, e_label, e_techn, "<->")
+!unquoted procedure Bot($alias, $label, $tech, $descr)
+rectangle "==$label\n//<size:$TECHN_FONT_SIZE>[$tech]</size>//\n\n$descr\n<$robot{scale=0.6}>" $toStereos("bot", $tags) as $alias
+$addTagToDynamicLegend(bot, $CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $CONTAINER_BORDER_COLOR)
+!endprocedure
 
-!define Group() rectangle " " <<group>>
-!define Group(e_label) rectangle "e_label" <<group>>
-!define Group(e_alias, e_label) rectangle "e_label" <<group>> as e_alias
+!define Rel_Both(e_from, e_to, e_label) Rel_(e_from, e_to, e_label, "<<-->>")
+!define Rel_Both(e_from, e_to, e_label, e_techn) Rel_(e_from,e_to, e_label, e_techn, "<<-->>")
+!define Rel_Both_Neighbor(e_from, e_to, e_label) Rel_(e_from, e_to, e_label, "<<->>")
+!define Rel_Both_Neighbor(e_from, e_to, e_label, e_techn) Rel_(e_from, e_to, e_label, e_techn, "<<->>")
+
+!unquoted procedure BiRel_Neighbor($from, $to, $label)
+Rel_($from, $to, $label, "<<->>")
+!endprocedure
+!unquoted procedure BiRel_Neighbor($from, $to, $label, $techn)
+Rel_($from, $to, $label, $techn, "<<->>")
+!endprocedure
+
+!unquoted procedure Group()
+Boundary(" ", " ", "group")
+!endprocedure
+
+!unquoted procedure Group(e_label)
+rectangle "e_label" <<group>>
+!endprocedure
+
+!unquoted procedure Group(e_alias, e_label)
+rectangle "e_label" <<group>> as e_alias
+!endprocedure
+
+!unquoted procedure SystemDb($alias, $label, $techn, $descr="", $sprite="", $tags="")
+database "$getContainer($label, $techn, $descr, $sprite)$getProps()" $toStereos("system", $tags) as $alias
+!endprocedure
