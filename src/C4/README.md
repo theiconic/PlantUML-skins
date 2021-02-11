@@ -18,6 +18,11 @@ will want to create a Container-level model.
 @enduml
 ```
 
+### Video walk-throughs
+1) [Plugin Setup and Skin Overview](https://www.loom.com/share/3d265167522144ca85dd1076e8494d66)
+2) [Re-modelling existing Draw.io diagram in PlantUML](https://www.loom.com/share/be99494bc5c0488881f92b516f3200f3)
+3) [Advanced Layouting](https://www.loom.com/share/16add14f80b0472a94d790b7fec55c47)
+
 ## Syntax & Examples
 See [samples](samples) folder for examples and syntax.
 
