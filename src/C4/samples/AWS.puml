@@ -1,5 +1,4 @@
 @startuml
-!include ../C4_Container.iuml
 !include ../C4_AWS.iuml
 
 title AWS Containers

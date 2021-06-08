@@ -113,34 +113,43 @@ skinparam rectangle<<group>> {
     !endif
 !endfunction
 
+!procedure $tiAddToLegend($tag, $bgColor, $fontColor, $borderColor)
+    !if (%function_exists("$addTagToDynamicLegend"))
+        $addTagToDynamicLegend($tag, $bgColor, $fontColor, $borderColor)
+    !endif
+    !if (%function_exists("$addTagToLegend"))
+        $addTagToLegend($tag, $bgColor, $fontColor, $borderColor)
+    !endif
+!endfunction
+
 !unquoted procedure Queue($alias, $label, $descr="", $tech="", $sprite="", $tags="")
 queue "$getQueue($label, $tech, $descr, $sprite)$getProps()" $toStereos("queue", $tags) as $alias
-$addTagToDynamicLegend(queue, $QUEUE_BG_COLOR, $QUEUE_FONT_COLOR, $QUEUE_BORDER_COLOR)
+$tiAddToLegend(queue, $QUEUE_BG_COLOR, $QUEUE_FONT_COLOR, $QUEUE_BORDER_COLOR)
 !endprocedure
 
 !unquoted procedure App($alias, $label, $tech, $descr, $tags="")
 rectangle "==$label\n//<size:$TECHN_FONT_SIZE>[$tech]</size>//\n\n$descr\n<$mobile{scale=0.75}>" $toStereos('app', $tags) as $alias
-$addTagToDynamicLegend(app, $SYSTEM_BG_COLOR, $ELEMENT_FONT_COLOR, $SYSTEM_BORDER_COLOR)
+$tiAddToLegend(app, $SYSTEM_BG_COLOR, $ELEMENT_FONT_COLOR, $SYSTEM_BORDER_COLOR)
 !endprocedure
 
 !unquoted procedure App_iOS($alias, $label, $descr, $tags="")
 rectangle "==$label\n//<size:$TECHN_FONT_SIZE>[iOS]</size>//\n\n$descr\n<$apple{scale=0.75}>" $toStereos('app', $tags) as $alias
-$addTagToDynamicLegend(app_ios, $SYSTEM_BG_COLOR, $ELEMENT_FONT_COLOR, $SYSTEM_BORDER_COLOR)
+$tiAddToLegend(app_ios, $SYSTEM_BG_COLOR, $ELEMENT_FONT_COLOR, $SYSTEM_BORDER_COLOR)
 !endprocedure
 
 !unquoted procedure App_Android($alias, $label, $descr, $tags="")
 rectangle "==$label\n//<size:$TECHN_FONT_SIZE>[Android]</size>//\n\n$descr\n<$android{scale=0.75}>" $toStereos('app', $tags) as $alias
-$addTagToDynamicLegend(app_android, $SYSTEM_BG_COLOR, $ELEMENT_FONT_COLOR, $SYSTEM_BORDER_COLOR)
+$tiAddToLegend(app_android, $SYSTEM_BG_COLOR, $ELEMENT_FONT_COLOR, $SYSTEM_BORDER_COLOR)
 !endprocedure
 
 !unquoted procedure Website($alias, $label, $tech, $descr, $tags="")
 frame "==$label\n//<size:$TECHN_FONT_SIZE>[$tech]</size>//\n\n$descr\n<$chrome{scale=0.525}>" $toStereos('app', $tags) as $alias
-$addTagToDynamicLegend(website, $SYSTEM_BG_COLOR, $ELEMENT_FONT_COLOR, "")
+$tiAddToLegend(website, $SYSTEM_BG_COLOR, $ELEMENT_FONT_COLOR, "")
 !endprocedure
 
 !unquoted procedure Bot($alias, $label, $tech, $descr)
 rectangle "==$label\n//<size:$TECHN_FONT_SIZE>[$tech]</size>//\n\n$descr\n<$robot{scale=0.6}>" $toStereos("bot", $tags) as $alias
-$addTagToDynamicLegend(bot, $CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $CONTAINER_BORDER_COLOR)
+$tiAddToLegend(bot, $CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $CONTAINER_BORDER_COLOR)
 !endprocedure
 
 !define Rel_Both(e_from, e_to, e_label) Rel_(e_from, e_to, e_label, "<<-->>")
