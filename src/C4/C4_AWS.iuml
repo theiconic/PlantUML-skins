@@ -6,6 +6,7 @@
 !include <awslib/Database/DynamoDBTable>
 !include <awslib/Database/RDSAmazonRDSInstance>
 !include <awslib/Database/ElastiCacheForRedis>
+!include ./C4_Container.iuml
 
 skinparam rectangle<<aws>> {
     Shadowing false
@@ -54,20 +55,20 @@ skinparam database<<aws_elasticcache>> {
 
 !unquoted procedure Container_AWS_S3($alias, $label, $descr, $tags="")
 database "<$S3Bucket{scale=0.66>\n==$label\n//<size:TECHN_FONT_SIZE>[AWS S3]</size>//\n\n$descr" $toStereos('aws_s3', $tags) as $alias
-$addTagToDynamicLegend(aws_s3, $CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $CONTAINER_BORDER_COLOR)
+$tiAddToLegend(aws_s3, $CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $CONTAINER_BORDER_COLOR)
 !endprocedure
 
 !unquoted procedure Container_AWS_DynamoDB($alias, $label, $descr, $tags="")
 database "<$DynamoDBTable{scale=0.66}>\n==$label\n//<size:TECHN_FONT_SIZE>[AWS DynamoDb]</size>//\n\n$descr" $toStereos('aws_dynamo', $tags) as $alias
-$addTagToDynamicLegend(aws_dynamo, $CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $CONTAINER_BORDER_COLOR)
+$tiAddToLegend(aws_dynamo, $CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $CONTAINER_BORDER_COLOR)
 !endprocedure
 
 !unquoted procedure Container_AWS_RDS($alias, $label, $descr, $tags="")
 database "<$RDSAmazonRDSinstance{scale=0.66}>\n==$label\n//<size:TECHN_FONT_SIZE>[AWS RDS]</size>//\n\n$descr" $toStereos('aws_rds', $tags) as $alias
-$addTagToDynamicLegend(aws_rds, $CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $CONTAINER_BORDER_COLOR)
+$tiAddToLegend(aws_rds, $CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $CONTAINER_BORDER_COLOR)
 !endprocedure
 
 !unquoted procedure Container_AWS_ElastiCache($alias, $label, $descr, $tags="")
 database "<$ElastiCacheForRedis{scale=0.66}>\n==$label\n//<size:TECHN_FONT_SIZE>[AWS ElasticCache]</size>//\n\n$descr" $toStereos('aws_elasticcache', $tags) as $alias
-$addTagToDynamicLegend(aws_elasticcache, $CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $CONTAINER_BORDER_COLOR)
+$tiAddToLegend(aws_elasticcache, $CONTAINER_BG_COLOR, $ELEMENT_FONT_COLOR, $CONTAINER_BORDER_COLOR)
 !endprocedure
